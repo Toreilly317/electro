@@ -1,4 +1,4 @@
-# Elect
+# Electro
 ## Getting started
 ```bash
 // execute
