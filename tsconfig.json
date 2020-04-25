@@ -4,29 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@main/*": [
-        "src/main/*"
-      ],
-      "@electro/hooks": [
-        "src/renderer/@electro-hooks/*"
-      ],
-      "@electro/ui/*": [
-        "src/renderer/@electro-ui/*"
-      ],
-      "@utils/*": [
-        "src/renderer/utils/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-    },
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -35,7 +12,5 @@
     "sourceMap": true,
     "target": "esnext"
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
