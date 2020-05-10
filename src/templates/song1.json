@@ -1,0 +1,17 @@
+{
+  "title": "Song Template 1",
+  "bpm": 120,
+  "private": false,
+  "artists": {
+    "id": "123456",
+    "username": "Electro Team"
+  },
+  "rack": {
+    "instruments": [
+      {
+        "name": "Samplr",
+        "device": "Samplr"
+      }
+    ]
+  }
+}
