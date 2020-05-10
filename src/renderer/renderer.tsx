@@ -2,8 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
 import "./styles.css";
-import { VCO, Samplr } from "./@electro-modules";
-
+import DAW from "./Components/DAW/DAW";
 
 const Rack = styled.div`
   background: #333333;
@@ -18,10 +17,8 @@ const Rack = styled.div`
 
 function App() {
   return (
-    <div className="App">
-      <Rack>
-        <Samplr />
-      </Rack>
+    <div>
+      <DAW />
     </div>
   );
 }
