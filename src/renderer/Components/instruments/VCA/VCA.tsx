@@ -12,6 +12,8 @@ export const VCA = () => {
       <div>
         <RotaryKnob
           name={"Gain"}
+          min={0}
+          max={1}
           value={0.5}
           onChange={(e) => {
             console.log(e);
