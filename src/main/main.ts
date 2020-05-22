@@ -1,16 +1,13 @@
-"use strict";
-
-import installExtension, {
-  REACT_DEVELOPER_TOOLS
-} from 'electron-devtools-installer';
-
 /**
  * Entry point of the Election app.
  */
-import { app, BrowserWindow, Menu, MenuItem } from "electron";
+import { app, BrowserWindow, Menu, MenuItem, ipcMain, dialog } from "electron";
 import * as path from "path";
 import * as url from "url";
-import { openMarkdownFile } from "./lib/openFile";
+import installExtension, {
+  REACT_DEVELOPER_TOOLS
+} from 'electron-devtools-installer';
+import { handleAddUserFolder } from "./utils"
 
 let mainWindow: Electron.BrowserWindow;
 
@@ -47,9 +44,7 @@ function createWindow(): void {
   });
 }
 
-// create Menu
 const isMac: boolean = process.platform === "darwin";
-
 const template: any = [
   // { role: 'appMenu' }
   ...(isMac
@@ -81,7 +76,7 @@ const template: any = [
         label: "Open File",
         accelerater: "CmdOrCtl+O",
         click() {
-          openMarkdownFile(mainWindow);
+          () => console.log("click");
         },
       },
       isMac ? { role: "close" } : { role: "quit" },
@@ -201,3 +196,7 @@ app.whenReady().then(() => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+/* IPC HANDLERS */
+// lets user select a directory then sends back a formatted object which we can use for our filebrowser component
+handleAddUserFolder()

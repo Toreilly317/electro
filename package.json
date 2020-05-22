@@ -4,6 +4,7 @@
   "description": "A DAW build with Electron and React",
   "main": "./dist/main.bundle.js",
   "scripts": {
+    "sloc": "npx node-sloc . -x \"node_modules, dist\" -i \"svg, html, css, json,txt\"",
     "develop": "concurrently \"webpack\" \"npm run start\"",
     "dev": "concurrently \"npm run dev:build\" \"wait-on ./dist/main.bundle.js ./dist/renderer.bundle.js && npm run start\"",
     "start": "electron ./dist/main.bundle.js",

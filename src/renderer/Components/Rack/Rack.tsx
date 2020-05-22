@@ -11,10 +11,6 @@ const Rack: React.FC = () => {
   return (
     <RackStyles>
       <Samplr />
-      <div>
-        <VCO />
-        <VCA />
-      </div>
     </RackStyles>
   );
 };

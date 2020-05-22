@@ -2,13 +2,16 @@ import * as React from "react";
 import { render } from "react-dom";
 import DAW from "./Components/DAW/DAW";
 import ThemeProvider from "./Components/Providers/ThemeProvider";
+import { FileTreeProvider } from "./Components/Providers/FileTreeProvider";
 import "./styles.css";
 
 function App() {
   return (
-    <ThemeProvider>
-      <DAW />
-    </ThemeProvider>
+    <FileTreeProvider>
+      <ThemeProvider>
+        <DAW />
+      </ThemeProvider>
+    </FileTreeProvider>
   );
 }
 

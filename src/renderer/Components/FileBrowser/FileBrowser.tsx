@@ -1,10 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
+import { DirTree } from "../../../FileTree";
+import { FolderArrow } from "../Common";
 
 const FileBrowserStyles = styled.div`
-  max-height: 100vh;
   overflow-y: scroll;
-  max-height: 100vh;
+  font-weight: 400;
+
   ul {
     margin: 0;
     padding: 0;
@@ -16,31 +18,21 @@ const FileBrowserStyles = styled.div`
     padding: 3px;
   }
 
+  font-size: 1rem;
+
   .folder-name,
   .main-folder {
-    font-weight: 600;
     text-transform: capitalize;
-    font-size: 1.4rem;
   }
 
   .folder-item {
-    font-weight: 400;
     margin-left: 20px;
-    font-size: 1rem;
-    font-weight: 400px;
-
+    font-size: 0.8rem;
     display: block;
   }
 `;
 
-export interface Folder {
-  name: string;
-  contents: Array<string[] | Folder>;
-}
-
-type FolderConfig = Folder[];
-
-const FileBrowser: React.FC<{ folders: FolderConfig }> = ({ folders }) => {
+const FileBrowser: React.FC<{ folders: DirTree[] }> = ({ folders }) => {
   return (
     <FileBrowserStyles>
       <ul>
@@ -52,43 +44,44 @@ const FileBrowser: React.FC<{ folders: FolderConfig }> = ({ folders }) => {
   );
 };
 
-const Folder: React.FC<{ folder: Folder; parentFolderHidden?: boolean }> = ({
+const Folder: React.FC<{ folder: DirTree; parentFolderHidden?: boolean }> = ({
   folder,
   parentFolderHidden,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const isFolder = (item: any) =>
-    item.name && item.contents.length ? true : false;
+
   return (
     <>
       <li onClick={() => setIsOpen(!isOpen)} className="folder-name">
+        <FolderArrow isUp={isOpen} />
         {folder.name}
       </li>
-      {folder.contents.map((folderItem) =>
-        isFolder(folderItem) ? (
-          <li
-            style={{
-              display: `${isOpen ? "block" : "none"}`,
-            }}
-          >
-            <ul>
-              <Folder
-                folder={folderItem as Folder}
-                parentFolderHidden={isOpen}
-              />
-            </ul>
-          </li>
-        ) : (
-          <li
-            style={{
-              display: `${isOpen ? "block" : "none"}`,
-            }}
-            className="folder-item"
-          >
-            {(folderItem as string[])[0]}
-          </li>
-        )
-      )}
+      {folder &&
+        folder.children &&
+        folder.children.map((folderItem, index) =>
+          folderItem.type === "folder" ? (
+            <li
+              style={{
+                display: `${isOpen ? "block" : "none"}`,
+              }}
+              key={index}
+            >
+              <ul>
+                <Folder folder={folderItem} parentFolderHidden={isOpen} />
+              </ul>
+            </li>
+          ) : (
+            <li
+              style={{
+                display: `${isOpen ? "block" : "none"}`,
+              }}
+              className="folder-item"
+              key={index}
+            >
+              {folderItem.name}
+            </li>
+          )
+        )}
     </>
   );
 };

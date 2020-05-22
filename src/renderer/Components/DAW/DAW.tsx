@@ -1,22 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
 import Rack from "../Rack/Rack";
-import FileBrowser from "../FileBrowser/FileBrowser";
-import SampleData from "../FileBrowser/sampleData";
+import { Container } from "../Common";
+
+import Browser from "../Browser/Browser";
 
 const Layout = styled.div`
-  display: grid;
-  grid-template-columns: 1.5fr 6fr 2fr;
+  display: flex;
 `;
 
 const DAW: React.FC = () => {
   return (
     <Layout>
-      <FileBrowser folders={SampleData} />
+      <Browser />
       <Rack />
-      <div>
-        <h1>Social Window</h1>
-      </div>
     </Layout>
   );
 };
